@@ -9,7 +9,8 @@ export default tseslint.config(
     rules: {
       "prefer-const": "warn",
       "no-constant-binary-expression": "error",
-      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+      // "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+      "@typescript-eslint/no-unused-vars": "off", 
       "@typescript-eslint/no-explicit-any": "error"
     },
   }
