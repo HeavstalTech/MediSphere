@@ -1,0 +1,85 @@
+name: Aggregate Dependency READMEs
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  aggregate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Aggregate READMEs
+        run: |
+          mkdir -p docs
+          OUTPUT="docs/dependency-readmes.md"
+
+          cat > repos.json <<'EOF'
+          {
+            "next": "vercel/next.js",
+            "react": "facebook/react",
+            "typescript": "microsoft/TypeScript",
+            "tailwindcss": "tailwindlabs/tailwindcss",
+            "postcss": "postcss/postcss",
+            "autoprefixer": "postcss/autoprefixer",
+            "eslint": "eslint/eslint",
+            "eslint-config-next": "vercel/next.js",
+            "@rainbow-me/rainbowkit": "rainbow-me/rainbowkit",
+            "wagmi": "wevm/wagmi",
+            "viem": "wevm/viem",
+            "@tanstack/react-query": "TanStack/query",
+            "framer-motion": "motiondivision/motion",
+            "lucide-react": "lucide-icons/lucide",
+            "clsx": "lukeed/clsx",
+            "tailwind-merge": "dcastil/tailwind-merge"
+          }
+          EOF
+
+          echo "# Combined Dependency Documentation" > "$OUTPUT"
+          echo "" >> "$OUTPUT"
+          echo "_Generated on $(date -u)_" >> "$OUTPUT"
+          echo "" >> "$OUTPUT"
+
+          jq -r 'to_entries[] | "\(.key)|\(.value)"' repos.json | while IFS="|" read NAME REPO
+          do
+            echo "Fetching $NAME"
+
+            URL="https://raw.githubusercontent.com/$REPO/main/README.md"
+
+            if ! curl -fsSL "$URL" -o readme.tmp; then
+              URL="https://raw.githubusercontent.com/$REPO/master/README.md"
+              curl -fsSL "$URL" -o readme.tmp || {
+                echo "Skipping $NAME"
+                continue
+              }
+            fi
+
+            {
+              echo ""
+              echo "---"
+              echo ""
+              echo "# $NAME"
+              echo ""
+              echo "**Repository:** https://github.com/$REPO"
+              echo ""
+              cat readme.tmp
+              echo ""
+            } >> "$OUTPUT"
+          done
+
+      - name: Commit changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+          git add docs/dependency-readmes.md
+
+          git diff --cached --quiet && exit 0
+
+          git commit -m "docs: update aggregated READMEs"
+          git push
