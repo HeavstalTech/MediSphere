@@ -1,0 +1,26 @@
+name: Production Build Check
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  validate-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+      - name: Install Dependencies (Clean)
+        run: npm ci
+      - name: Check for Code Errors (Lint)
+        run: npm run lint
+      - name: Verify Build
+        run: npm run build
