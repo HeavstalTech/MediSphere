@@ -1,0 +1,11 @@
+@tailwind base
+@tailwind components
+@tailwind utilities
+body {
+  background-color: #020617
+  color: #e2e8f0
+}
+.bg-grid {
+  background-image: var(--tw-gradient-stops);
+  background-size: 40px 40px;
+}
