@@ -1,86 +1,127 @@
+// src/app/page.tsx
 "use client";
-
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { 
-  HeartPulse, ShieldCheck, Globe, Activity, Stethoscope, 
-  Pill, MapPin, Users, PhoneCall, ArrowRight 
+  HeartPulse, ShieldCheck, Activity, Stethoscope, 
+  Pill, PhoneCall, ArrowRight 
 } from "lucide-react";
-
-const BootSequence = ({ onComplete }: { onComplete: () => void }) => {
+import InformationModal from "@/components/InformationModal";
+const BootSequence = ({ 
+  onComplete, 
+  onSkip 
+}: { 
+  onComplete: () => void; 
+  onSkip: () => void; 
+}) => {
   const [step, setStep] = useState(0);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const timers = [
-      setTimeout(() => setStep(1), 1000),
-      setTimeout(() => setStep(2), 2500), 
-      setTimeout(() => setStep(3), 4500), 
-      setTimeout(() => setStep(4), 6000), 
-      setTimeout(() => onComplete(), 7500), 
+      setTimeout(() => setStep(1), 3000), 
+      setTimeout(() => setStep(2), 6500),  
+      setTimeout(() => setStep(3), 9500), 
+      setTimeout(() => setStep(4), 11500),
+      setTimeout(() => onComplete(), 14000),
     ];
+    return () => timers.forEach(clearTimeout);
+  }, [onComplete]);
+
+  useEffect(() => {
     let interval: NodeJS.Timeout;
-    if (step === 3) {
+    if (step === 1) {
       interval = setInterval(() => {
-        setProgress((prev) => (prev >= 100 ? 100 : prev + 5));
+        setProgress((prev) => (prev >= 100 ? 100 : prev + 2));
       }, 50);
     }
-
     return () => {
-      timers.forEach(clearTimeout);
       if (interval) clearInterval(interval);
     };
-  }, [step, onComplete]);
+  }, [step]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950 font-mono text-emerald-400 overflow-hidden">
       <div className="absolute inset-0 opacity-20 bg-grid-pattern bg-grid pointer-events-none" />
+      <button 
+        onClick={onSkip}
+        className="absolute top-6 right-6 border border-emerald-500 px-4 py-2 text-sm tracking-widest hover:bg-emerald-500 hover:text-slate-950 transition-colors z-50"
+      >
+        SKIP INTRO X
+      </button>
 
       <AnimatePresence mode="wait">
         {step === 0 && (
-          <motion.div key="0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <p>{">"} SYSTEM.INIT(HEALTH_NODE)</p>
-            <h1 className="mt-2 text-xl md:text-2xl font-bold tracking-widest text-white uppercase">
-              The Medisphere Initiates
+          <motion.div key="0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center text-center">
+            <p className="mb-6 opacity-70 tracking-widest">{">"} SYSTEM.INIT(HEALTH_NODE)</p>
+            <HeartPulse size={64} className="text-emerald-500 mb-6 animate-pulse" />
+            <h1 className="text-xl md:text-3xl font-bold tracking-[0.2em] text-white uppercase max-w-2xl leading-relaxed">
+              MEDISPHERE HEALS THE WORLD<br />NO MATTER WHAT.
             </h1>
           </motion.div>
         )}
 
         {step === 1 && (
-          <motion.div key="1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-center">
-            <p className="text-emerald-500 mb-2">ON-CHAIN VERIFIED</p>
-            <h2 className="text-4xl font-bold text-white tracking-widest">$MEDISPHERE</h2>
+          <motion.div key="1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center text-center">
+            <p className="text-emerald-500 tracking-[0.3em] mb-2">ON-CHAIN VERIFIED</p>
+            <h2 className="text-2xl md:text-4xl font-bold text-white tracking-widest uppercase">THE 100% HEALTH THESIS</h2>
+            <div className="relative flex items-center justify-center w-56 h-56 mt-8">
+              <svg className="absolute w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#022c22" strokeWidth="4" />
+                <motion.circle 
+                  cx="50" cy="50" r="45" fill="none" stroke="#10b981" strokeWidth="6" 
+                  strokeDasharray="283" 
+                  strokeDashoffset={283 - (283 * progress) / 100} 
+                  className="transition-all duration-75 ease-linear"
+                />
+              </svg>
+              <span className="text-6xl font-black text-white">{progress}%</span>
+            </div>
+            <p className="text-emerald-500 tracking-widest font-bold mt-6 text-xl">SECURED</p>
           </motion.div>
         )}
 
         {step === 2 && (
-          <motion.div key="2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-center w-64">
-            <p className="mb-4 text-sm">DECENTRALIZED HEALTHCARE</p>
-            <div className="w-full h-4 border border-emerald-500 p-1">
-              <motion.div className="h-full bg-emerald-500" initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 1.5, ease: "easeInOut" }} />
+          <motion.div key="2" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center text-center w-full">
+            <div className="w-full flex items-center justify-center opacity-80">
+              <Activity size={200} className="text-emerald-500 animate-pulse" strokeWidth={0.5} />
             </div>
-            <p className="mt-2 text-xs text-emerald-600">SECURING PROTOCOL...</p>
+            <div className="border border-emerald-500 px-6 py-3 mt-8 bg-emerald-950/30">
+              <p className="text-emerald-400 tracking-[0.2em] font-bold">LIVE VITALS ACTIVE</p>
+            </div>
+            <h2 className="text-2xl font-bold text-white tracking-[0.3em] mt-8 uppercase">
+              EYES ON THE PATIENT
+            </h2>
           </motion.div>
         )}
 
         {step === 3 && (
-          <motion.div key="3" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ opacity: 0 }} className="text-center">
-             <div className="relative flex items-center justify-center w-48 h-48 border-4 border-emerald-500 rounded-full shadow-[0_0_30px_rgba(16,185,129,0.3)]">
-                <span className="text-5xl font-black text-white">{progress}%</span>
-                <p className="absolute -bottom-8 text-emerald-500 font-bold tracking-widest">SECURED</p>
-             </div>
+          <motion.div key="3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-emerald-500 flex flex-col items-center justify-center z-40">
+            <h1 className="text-5xl md:text-9xl font-black text-slate-950 tracking-tighter mb-8 drop-shadow-xl">
+              $MEDISPHERE
+            </h1>
+            <div className="flex gap-2 md:gap-4 flex-wrap justify-center px-4">
+              {"BLOCKCHAIN".split("").map((letter, i) => (
+                <motion.div 
+                  key={i} 
+                  initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: i * 0.05 }}
+                  className="w-10 h-14 md:w-16 md:h-20 bg-slate-950 text-emerald-500 flex items-center justify-center font-black text-2xl md:text-4xl"
+                >
+                  {letter}
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         )}
 
         {step === 4 && (
-          <motion.div key="4" className="flex gap-2 text-5xl md:text-8xl font-black text-white mix-blend-difference">
-            {"MEDISPHERE".split("").map((letter, i) => (
-              <motion.span key={i} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
-                {letter}
-              </motion.span>
-            ))}
+          <motion.div key="4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="flex flex-col items-center text-center">
+            <p className="text-slate-400 font-mono tracking-widest mb-4">{">"} THE DECENTRALIZED HEALTH CREED</p>
+            <h1 className="text-5xl md:text-7xl font-black text-emerald-500 uppercase tracking-tighter drop-shadow-[0_0_20px_rgba(16,185,129,0.5)]">
+              JOIN THE CHARGE
+            </h1>
           </motion.div>
         )}
       </AnimatePresence>
@@ -88,16 +129,23 @@ const BootSequence = ({ onComplete }: { onComplete: () => void }) => {
   );
 };
 
-export default function MediSpherePage() {
-  const [introFinished, setIntroFinished] = useState(false);
 
-  if (!introFinished) {
-    return <BootSequence onComplete={() => setIntroFinished(true)} />;
+export default function MediSpherePage() {
+  const [appState, setAppState] = useState<'booting' | 'modal' | 'site'>('booting');
+  if (appState === 'booting') {
+    return (
+      <BootSequence 
+        onComplete={() => setAppState('modal')} 
+        onSkip={() => setAppState('site')} 
+      />
+    );
   }
 
+  if (appState === 'modal') {
+    return <InformationModal onEnter={() => setAppState('site')} />;
+  }
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="min-h-screen relative overflow-hidden">
-      
       <nav className="fixed top-0 w-full z-40 bg-slate-950/80 backdrop-blur-md border-b border-emerald-500/20 px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <HeartPulse className="text-emerald-500" size={32} />
@@ -105,7 +153,6 @@ export default function MediSpherePage() {
         </div>
         <ConnectButton />
       </nav>
-
       <section className="relative pt-40 pb-20 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
         <div className="flex-1 space-y-6 z-10">
           <div className="inline-block px-4 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-mono text-sm">
@@ -146,6 +193,7 @@ export default function MediSpherePage() {
           </motion.div>
         </div>
       </section>
+
       <section className="py-24 bg-slate-900/50 border-y border-slate-800">
         <div className="max-w-7xl mx-auto px-6 text-center">
            <h2 className="text-3xl md:text-4xl font-bold text-white mb-16">Ecosystem Utility</h2>
@@ -169,6 +217,7 @@ export default function MediSpherePage() {
            </div>
         </div>
       </section>   
+
       <footer className="border-t border-slate-800 py-8 text-center text-slate-500 text-sm">
         <p>© {new Date().getFullYear()} MediSphere ($MEDISPHERE). All rights reserved.</p>
       </footer>
