@@ -1,0 +1,13 @@
+import { defineConfig } from "eslint/config";
+
+export default defineConfig([
+  {
+    files: ["src/**/*.ts", "src/**/*.tsx"],
+    rules: {
+      "prefer-const": "warn",
+      "no-constant-binary-expression": "error",
+      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+      "@typescript-eslint/no-explicit-any": "error"
+    },
+  },
+]);
