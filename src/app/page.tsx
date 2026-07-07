@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { 
   HeartPulse, ShieldCheck, Globe, Activity, Stethoscope, 
-  Pill, Clock, MapPin, Users, PhoneCall, ArrowRight 
+  Pill, MapPin, Users, PhoneCall, ArrowRight 
 } from "lucide-react";
 
 const BootSequence = ({ onComplete }: { onComplete: () => void }) => {
