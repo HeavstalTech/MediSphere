@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediSphere | Healthcare Without Borders</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#00D26A',
+                        dark: '#030712',
+                        card: '#090E17'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            overflow-x: hidden;
+        }
+        
+        /* Background overlays using LOCAL images */
+        .hero-bg {
+            background: linear-gradient(rgba(3, 7, 18, 0.75), rgba(3, 7, 18, 0.98)), url('MediSphere-Background-Image1.png') no-repeat center center;
+            background-size: cover;
+        }
+        .about-bg {
+            /* Positioned center 20% to keep surgeons' faces visible */
+            background: linear-gradient(rgba(3, 7, 18, 0.85), rgba(3, 7, 18, 0.98)), url('MediSphere-Background-Image2.png') no-repeat center 20%;
+            background-size: cover;
+        }
+        .glass-card {
+            background-color: rgba(9, 14, 23, 0.7);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+    </style>
+</head>
+<body class="text-slate-300 antialiased overflow-x-hidden">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 w-full bg-[#030712]/90 backdrop-blur-md z-50 border-b border-slate-800 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="#home" class="flex items-center gap-3">
+                <img src="MediSphere-Logo.png" alt="MediSphere Logo" class="w-8 h-8 rounded-full border border-brand/50 object-cover">
+                <span class="text-white font-extrabold tracking-wider text-lg">MEDISPHERE</span>
+            </a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-400">
+                <a href="#about" class="hover:text-brand transition">About</a>
+                <a href="#solution" class="hover:text-brand transition">Solution</a>
+                <a href="#token" class="hover:text-brand transition">Tokenomics</a>
+                <a href="#roadmap" class="hover:text-brand transition">Roadmap</a>
+                <a href="#community" class="hover:text-brand transition">Community</a>
+                <a href="#faq" class="hover:text-brand transition">FAQ</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="text-white p-2 focus:outline-none md:hidden">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE SIDEBAR MENU -->
+    <div id="mobile-menu" class="fixed inset-0 bg-[#030712]/98 backdrop-blur-lg z-40 hidden flex-col pt-24 px-6 pb-6 overflow-y-auto border-t border-slate-800">
+        <nav class="flex flex-col gap-6 text-lg font-medium text-slate-300">
+            <a href="#home" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
+                Home <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
+            </a>
+            <a href="#about" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
+                About <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
+            </a>
+            <a href="#solution" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
+                Solution <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
+            </a>
+            <a href="#token" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
+                Tokenomics <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
+            </a>
+            <a href="#roadmap" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
+                Roadmap <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
+            </a>
+            <a href="#community" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
+                Community <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
+            </a>
+            <a href="#faq" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
+                FAQ <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
+            </a>
+        </nav>
+        <div class="mt-auto pt-8">
+            <a href="#community" class="mobile-link w-full inline-flex items-center justify-center gap-2 bg-brand text-black px-6 py-3.5 rounded-xl font-bold">
+                Join Community
+            </a>
+        </div>
+    </div>
+
+    <!-- 1. HERO SECTION -->
+    <section id="home" class="hero-bg pt-32 pb-20 px-4 min-h-screen flex flex-col items-center justify-center text-center relative">
+        <div class="max-w-3xl mx-auto relative z-10">
+            <!-- Central Hero Logo -->
+            <img src="MediSphere-Logo.png" alt="MediSphere Logo Large" class="reveal w-24 h-24 md:w-32 md:h-32 rounded-full object-cover shadow-[0_0_40px_rgba(0,210,106,0.2)] mx-auto mb-8 border border-brand/30">
+
+            <!-- Badge -->
+            <div class="reveal delay-100 inline-flex items-center gap-2 border border-brand/30 bg-brand/10 px-4 py-1.5 rounded-full text-xs text-brand font-bold uppercase tracking-widest mb-6">
+                <i class="fa-solid fa-rocket animate-pulse"></i> Launching Soon · $MEDISPHERE
+            </div>
+
+            <h1 class="reveal delay-200 text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+                Healthcare <span class="text-brand">Without Borders</span>
+            </h1>
+            
+            <p class="reveal delay-300 text-slate-300 text-base md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+                Connecting patients with trusted healthcare professionals through blockchain technology and digital innovation.
+            </p>
+            
+            <div class="reveal delay-400 flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <a href="#community" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand hover:bg-[#00b55b] text-black px-8 py-3.5 rounded-xl font-bold transition duration-300">
+                    <i class="fa-solid fa-users"></i> Join Community <i class="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+                <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-transparent border-2 border-slate-700 hover:border-slate-500 hover:bg-slate-800/50 text-white px-8 py-3.5 rounded-xl font-semibold transition duration-300">
+                    <i class="fa-regular fa-file-lines"></i> View Whitepaper
+                </a>
+            </div>
+            
+            <div class="reveal delay-400 flex justify-center">
+                <a href="#token" class="inline-flex items-center gap-2 bg-card/60 border border-slate-800 text-slate-300 px-6 py-2.5 rounded-full text-sm font-semibold hover:border-slate-600 transition">
+                    <i class="fa-solid fa-bolt text-brand"></i> Launch Updates
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. ABOUT SECTION -->
+    <section id="about" class="about-bg py-24 px-4 border-t border-slate-900">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="reveal border border-brand/20 bg-brand/10 px-4 py-1 rounded-full text-xs font-bold text-brand tracking-wider uppercase">
+                About MediSphere
+            </span>
+            <h2 class="reveal delay-100 text-3xl md:text-5xl font-extrabold text-white mt-6 mb-4">
+                Healthcare reimagined for a connected world
+            </h2>
+            <p class="reveal delay-200 text-slate-400 text-base md:text-lg max-w-2xl mx-auto mb-16">
+                MediSphere is more than a token — it's a movement to democratize healthcare through blockchain technology.
+            </p>
+
+            <div class="grid gap-6 text-left max-w-3xl mx-auto">
+                <div class="reveal glass-card p-8 rounded-2xl border border-slate-800 hover:border-brand/30 transition duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-6">
+                        <i class="fa-regular fa-heart text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Our Vision</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        A world where quality healthcare is not a privilege but a universal right — accessible to every individual regardless of geography or economic status.
+                    </p>
+                </div>
+                <div class="reveal delay-100 glass-card p-8 rounded-2xl border border-slate-800 hover:border-brand/30 transition duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-6">
+                        <i class="fa-solid fa-earth-americas text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Our Mission</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Build a blockchain-powered healthcare ecosystem that makes healthcare more accessible, affordable, and connected worldwide.
+                    </p>
+                </div>
+                <div class="reveal delay-200 glass-card p-8 rounded-2xl border border-slate-800 hover:border-brand/30 transition duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-6">
+                        <i class="fa-solid fa-shield-halved text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Our Promise</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Trust, transparency, and innovation at the core of every interaction — securing patient data and enabling seamless care across borders.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. THE CHALLENGE -->
+    <section class="py-24 px-4 bg-dark border-t border-slate-900">
+        <div class="max-w-5xl mx-auto text-center">
+            <span class="reveal border border-red-500/20 bg-red-950/20 px-4 py-1 rounded-full text-xs font-bold text-red-500 tracking-wider uppercase">
+                The Challenge
+            </span>
+            <h2 class="reveal delay-100 text-3xl md:text-5xl font-extrabold text-white mt-6 mb-4">
+                Healthcare problems we solve
+            </h2>
+            <p class="reveal delay-200 text-slate-400 text-base md:text-lg max-w-2xl mx-auto mb-16">
+                The global healthcare system is broken. These are the barriers MediSphere is built to overcome.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto text-left">
+                <div class="reveal bg-card p-6 rounded-2xl border border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4">
+                        <i class="fa-solid fa-user-doctor-slash"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Doctor Shortages</h3>
+                    <p class="text-slate-400 text-sm">Millions lack access to a qualified physician in their region.</p>
+                </div>
+                <div class="reveal delay-100 bg-card p-6 rounded-2xl border border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Long Waiting Times</h3>
+                    <p class="text-slate-400 text-sm">Patients wait weeks or months for appointments.</p>
+                </div>
+                <div class="reveal bg-card p-6 rounded-2xl border border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4">
+                        <i class="fa-solid fa-truck-ramp-box"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">High Transport Costs</h3>
+                    <p class="text-slate-400 text-sm">Travel expenses make care unaffordable for many.</p>
+                </div>
+                <div class="reveal delay-100 bg-card p-6 rounded-2xl border border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Rural Healthcare Gaps</h3>
+                    <p class="text-slate-400 text-sm">Remote communities are left without facilities.</p>
+                </div>
+                <div class="reveal bg-card p-6 rounded-2xl border border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4">
+                        <i class="fa-solid fa-stethoscope"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Limited Specialist Access</h3>
+                    <p class="text-slate-400 text-sm">Specialists are concentrated in urban centers only.</p>
+                </div>
+                <div class="reveal delay-100 bg-card p-6 rounded-2xl border border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Poor Follow-Up Care</h3>
+                    <p class="text-slate-400 text-sm">Lack of continuity leads to worse outcomes.</p>
+                </div>
+                <div class="reveal bg-card p-6 rounded-2xl border border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4">
+                        <i class="fa-solid fa-wheelchair"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Elderly Challenges</h3>
+                    <p class="text-slate-400 text-sm">Seniors struggle with mobility and access to care.</p>
+                </div>
+                <div class="reveal delay-100 bg-card p-6 rounded-2xl border border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Lack of Education</h3>
+                    <p class="text-slate-400 text-sm">Health literacy gaps prevent preventive care.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. OUR SOLUTION -->
+    <section id="solution" class="py-24 px-4 border-t border-slate-900 bg-[#050810]">
+        <div class="max-w-6xl mx-auto text-center">
+            <span class="reveal border border-brand/20 bg-brand/10 px-4 py-1 rounded-full text-xs font-bold text-brand tracking-wider uppercase">
+                Our Solution
+            </span>
+            <h2 class="reveal delay-100 text-3xl md:text-5xl font-extrabold text-white mt-6 mb-4">
+                A complete digital healthcare ecosystem
+            </h2>
+            <p class="reveal delay-200 text-slate-400 text-base md:text-lg max-w-2xl mx-auto mb-16">
+                Every tool a patient needs, powered by blockchain for trust, transparency, and accessibility.
+            </p>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
+                <div class="reveal bg-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-center hover:border-brand/30 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4">
+                        <i class="fa-solid fa-stethoscope"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm leading-snug">Online Doctor<br>Consultation</h4>
+                </div>
+                <div class="reveal delay-100 bg-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-center hover:border-brand/30 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm leading-snug">Video<br>Consultation</h4>
+                </div>
+                <div class="reveal delay-200 bg-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-center hover:border-brand/30 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm leading-snug">Voice<br>Consultation</h4>
+                </div>
+                <div class="reveal delay-300 bg-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-center hover:border-brand/30 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4">
+                        <i class="fa-regular fa-comment-dots"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm leading-snug">Chat<br>Consultation</h4>
+                </div>
+                <div class="reveal bg-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-center hover:border-brand/30 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4">
+                        <i class="fa-regular fa-file-lines"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm leading-snug">Electronic<br>Prescriptions</h4>
+                </div>
+                <div class="reveal delay-100 bg-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-center hover:border-brand/30 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4">
+                        <i class="fa-solid fa-folder-medical"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm leading-snug">Digital Medical<br>Records</h4>
+                </div>
+                <div class="reveal delay-200 bg-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-center hover:border-brand/30 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4">
+                        <i class="fa-regular fa-calendar-check"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm leading-snug">Appointment<br>Booking</h4>
+                </div>
+                <div class="reveal delay-300 bg-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-center hover:border-brand/30 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4">
+                        <i class="fa-solid fa-house-user"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm leading-snug">Home<br>Nursing</h4>
+                </div>
+                <div class="reveal bg-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-center hover:border-brand/30 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4">
+                        <i class="fa-solid fa-pills"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm leading-snug">Pharmacy<br>Integration</h4>
+                </div>
+                <div class="reveal delay-100 bg-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-center hover:border-brand/30 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm leading-snug">AI Health<br>Assistant</h4>
+                </div>
+                <div class="reveal delay-200 bg-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-center hover:border-brand/30 transition sm:col-span-2 md:col-span-1">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-sm leading-snug">Health<br>Education</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TOKEN HERO & UTILITY -->
+    <section id="token" class="py-24 px-4 bg-dark border-t border-slate-900">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="reveal border border-brand/20 bg-brand/10 px-4 py-1 rounded-full text-xs font-bold text-brand tracking-wider uppercase">
+                UTILITY
+            </span>
+            <h2 class="reveal delay-100 text-3xl md:text-5xl font-extrabold text-white mt-6 mb-4">
+                Why $MEDISPHERE?
+            </h2>
+            <p class="reveal delay-200 text-slate-400 text-base md:text-lg max-w-xl mx-auto mb-16">
+                The native utility token powering the MediSphere healthcare ecosystem.
+            </p>
+            
+            <div class="grid gap-4 max-w-3xl mx-auto text-left">
+                <div class="reveal bg-card p-6 rounded-2xl border border-slate-800 hover:border-brand/30 transition">
+                    <div class="flex items-center gap-5">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand">
+                            <i class="fa-solid fa-network-wired text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg mb-1">Healthcare Ecosystem</h4>
+                            <p class="text-slate-400 text-sm">Power the full MediSphere platform for seamless cross-border care.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal bg-card p-6 rounded-2xl border border-slate-800 hover:border-brand/30 transition">
+                    <div class="flex items-center gap-5">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand">
+                            <i class="fa-solid fa-check-to-slot text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg mb-1">Governance</h4>
+                            <p class="text-slate-400 text-sm">Vote on key decisions shaping the future of the ecosystem.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal bg-card p-6 rounded-2xl border border-slate-800 hover:border-brand/30 transition">
+                    <div class="flex items-center gap-5">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand">
+                            <i class="fa-solid fa-users-gear text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg mb-1">Community</h4>
+                            <p class="text-slate-400 text-sm">Join a global network of patients, doctors, and innovators.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal bg-card p-6 rounded-2xl border border-slate-800 hover:border-brand/30 transition">
+                    <div class="flex items-center gap-5">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand">
+                            <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg mb-1">Future Utility</h4>
+                            <p class="text-slate-400 text-sm">Unlock upcoming features and premium healthcare services.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal bg-card p-6 rounded-2xl border border-slate-800 hover:border-brand/30 transition">
+                    <div class="flex items-center gap-5">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand">
+                            <i class="fa-solid fa-gift text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg mb-1">Rewards</h4>
+                            <p class="text-slate-400 text-sm">Earn tokens through participation and engagement.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal bg-card p-6 rounded-2xl border border-slate-800 hover:border-brand/30 transition">
+                    <div class="flex items-center gap-5">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand">
+                            <i class="fa-solid fa-chart-line text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg mb-1">Ecosystem Growth</h4>
+                            <p class="text-slate-400 text-sm">Benefit from the expanding value of the MediSphere network.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. ROADMAP SECTION -->
+    <section id="roadmap" class="py-24 px-4 border-t border-slate-900 bg-[#050810] relative">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="reveal border border-brand/20 bg-brand/10 px-4 py-1 rounded-full text-xs font-bold text-brand tracking-wider uppercase">
+                Roadmap
+            </span>
+            <h2 class="reveal delay-100 text-3xl md:text-5xl font-extrabold text-white mt-6 mb-4">
+                The path to global healthcare
+            </h2>
+            <p class="reveal delay-200 text-slate-400 text-base md:text-lg max-w-2xl mx-auto mb-20">
+                A phased journey from foundation to worldwide healthcare integration.
+            </p>
+
+            <div class="relative max-w-xl mx-auto text-left border-l-[2px] border-[#00D26A]/30 pl-8 ml-6 md:mx-auto">
+                
+                <!-- Phase 1 (Active) -->
+                <div class="reveal mb-14 relative">
+                    <div class="absolute -left-[50px] top-0 w-10 h-10 rounded-full bg-brand flex items-center justify-center text-black shadow-[0_0_20px_rgba(0,210,106,0.5)] ring-4 ring-[#050810]">
+                        <i class="fa-solid fa-wave-square text-sm"></i>
+                    </div>
+                    <div class="bg-card border border-slate-800 p-6 rounded-2xl hover:border-brand/30 transition">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-brand/10 text-brand px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider">In Progress</span>
+                            <span class="text-xs font-bold text-brand">Q1 2026 · PHASE 1</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Foundation</h3>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <li><i class="fa-solid fa-check text-brand mr-2"></i> Community Building</li>
+                            <li><i class="fa-solid fa-check text-brand mr-2"></i> Website Launch</li>
+                            <li><i class="fa-solid fa-check text-brand mr-2"></i> Token Launch (TBC)</li>
+                            <li><i class="fa-solid fa-check text-brand mr-2"></i> Marketing Campaign</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="reveal mb-14 relative">
+                    <div class="absolute -left-[50px] top-0 w-10 h-10 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center text-slate-500 ring-4 ring-[#050810]">
+                        <i class="fa-solid fa-stethoscope text-sm"></i>
+                    </div>
+                    <div class="bg-card/50 border border-slate-800/60 p-6 rounded-2xl">
+                        <div class="flex justify-end mb-3">
+                            <span class="text-xs font-bold text-brand/60 uppercase tracking-wider">Q2 2026 · PHASE 2</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Growth</h3>
+                        <ul class="space-y-3 text-sm text-slate-500">
+                            <li><i class="fa-solid fa-check mr-2"></i> Strategic Healthcare Partnerships</li>
+                            <li><i class="fa-solid fa-check mr-2"></i> Telemedicine MVP</li>
+                            <li><i class="fa-solid fa-check mr-2"></i> Digital Health Records</li>
+                            <li><i class="fa-solid fa-check mr-2"></i> Ecosystem Growth</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="reveal mb-14 relative">
+                    <div class="absolute -left-[50px] top-0 w-10 h-10 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center text-slate-500 ring-4 ring-[#050810]">
+                        <i class="fa-solid fa-brain text-sm"></i>
+                    </div>
+                    <div class="bg-card/50 border border-slate-800/60 p-6 rounded-2xl">
+                        <div class="flex justify-end mb-3">
+                            <span class="text-xs font-bold text-brand/60 uppercase tracking-wider">Q3 2026 · PHASE 3</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Innovation</h3>
+                        <ul class="space-y-3 text-sm text-slate-500">
+                            <li><i class="fa-solid fa-check mr-2"></i> AI Healthcare Assistant</li>
+                            <li><i class="fa-solid fa-check mr-2"></i> Mobile App Launch</li>
+                            <li><i class="fa-solid fa-check mr-2"></i> Remote Diagnostics</li>
+                            <li><i class="fa-solid fa-check mr-2"></i> Global Expansion</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="reveal relative">
+                    <div class="absolute -left-[50px] top-0 w-10 h-10 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center text-slate-500 ring-4 ring-[#050810]">
+                        <i class="fa-solid fa-earth-americas text-sm"></i>
+                    </div>
+                    <div class="bg-card/50 border border-slate-800/60 p-6 rounded-2xl">
+                        <div class="flex justify-end mb-3">
+                            <span class="text-xs font-bold text-brand/60 uppercase tracking-wider">Q4 2026 · PHASE 4</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Global Adoption</h3>
+                        <ul class="space-y-3 text-sm text-slate-500">
+                            <li><i class="fa-solid fa-check mr-2"></i> Worldwide Healthcare Network</li>
+                            <li><i class="fa-solid fa-check mr-2"></i> Full Ecosystem Integration</li>
+                            <li><i class="fa-solid fa-check mr-2"></i> Cross-Border Care</li>
+                            <li><i class="fa-solid fa-check mr-2"></i> Future Integrations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-16 text-xs tracking-widest text-slate-600 uppercase font-bold">
+                Timeline Subject to Change · Launch Date: TBC
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. COMMUNITY SECTION -->
+    <section id="community" class="relative py-24 px-4 overflow-hidden border-t border-slate-900">
+        <!-- Kept inline background here assuming no local background requested for community, but you can change the URL to a local file if needed -->
+        <div class="absolute inset-0 z-0 opacity-30">
+            <img src="https://i.ibb.co/DHRkDJyj/e7e2138ca192.jpg" alt="Community Background" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#030712]/70 to-[#030712]"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-5xl mx-auto text-center">
+            <span class="reveal border border-brand/20 bg-brand/10 px-4 py-1 rounded-full text-xs font-bold text-brand tracking-wider uppercase">
+                Community
+            </span>
+            <h2 class="reveal delay-100 text-3xl md:text-5xl font-extrabold text-white mt-6 mb-4">
+                Join the MediSphere movement
+            </h2>
+            <p class="reveal delay-200 text-slate-400 text-base md:text-lg max-w-2xl mx-auto mb-12">
+                Connect with patients, doctors, and innovators building the future of healthcare.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto text-left">
+                <a href="https://t.me/medispheretoken" target="_blank" rel="noopener noreferrer" class="reveal bg-card/70 hover:bg-card transition backdrop-blur-md p-8 rounded-2xl border border-slate-800 flex items-center gap-5 group hover:border-brand/50">
+                    <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center transition group-hover:scale-110 group-hover:bg-brand/20">
+                        <i class="fa-brands fa-telegram text-[26px] text-brand"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-lg font-bold text-white mb-0.5">Telegram</h3>
+                        <p class="text-slate-400 text-sm">Join the conversation</p>
+                    </div>
+                </a>
+                
+                <a href="https://x.com/MediSpheretoken" target="_blank" rel="noopener noreferrer" class="reveal delay-100 bg-card/70 hover:bg-card transition backdrop-blur-md p-8 rounded-2xl border border-slate-800 flex items-center gap-5 group hover:border-white/50">
+                    <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center transition group-hover:scale-110 group-hover:bg-slate-800/80">
+                        <i class="fa-brands fa-x-twitter text-[26px] text-white"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-lg font-bold text-white mb-0.5">X (Twitter)</h3>
+                        <p class="text-slate-400 text-sm">Follow for updates</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FAQ SECTION (WITH EXACT VIDEO COPY) -->
+    <section id="faq" class="py-24 px-4 bg-dark border-t border-slate-900">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="reveal border border-brand/20 bg-brand/10 px-4 py-1 rounded-full text-xs font-bold text-brand tracking-wider uppercase">
+                    FAQ
+                </span>
+                <h2 class="reveal delay-100 text-3xl md:text-5xl font-extrabold text-white mt-6 mb-4">
+                    Frequently asked questions
+                </h2>
+                <p class="reveal delay-200 text-slate-400 text-sm md:text-base max-w-lg mx-auto">
+                    Everything you need to know about MediSphere and the $MEDISPHERE token.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="reveal border border-slate-800 bg-card rounded-xl overflow-hidden">
+                    <button class="w-full p-6 text-left text-white font-semibold flex justify-between items-center focus:outline-none hover:bg-slate-800/50 transition" onclick="toggleFaq(this)">
+                        <span>What is MediSphere?</span>
+                        <i class="fa-solid fa-chevron-down text-brand transition-transform duration-300"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-slate-900/40">
+                        <p class="p-6 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                            MediSphere is a blockchain-powered healthcare ecosystem that connects patients with trusted healthcare professionals worldwide. Through our platform, users can access online consultations, digital prescriptions, medical records, and more — all powered by the $MEDISPHERE token.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reveal border border-slate-800 bg-card rounded-xl overflow-hidden">
+                    <button class="w-full p-6 text-left text-white font-semibold flex justify-between items-center focus:outline-none hover:bg-slate-800/50 transition" onclick="toggleFaq(this)">
+                        <span>How do I buy $MEDISPHERE?</span>
+                        <i class="fa-solid fa-chevron-down text-brand transition-transform duration-300"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-slate-900/40">
+                        <p class="p-6 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                            You can purchase $MEDISPHERE tokens on supported decentralized exchanges. Simply connect your wallet, swap your preferred cryptocurrency for $MEDISPHERE using our contract address, and start participating in the ecosystem.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reveal border border-slate-800 bg-card rounded-xl overflow-hidden">
+                    <button class="w-full p-6 text-left text-white font-semibold flex justify-between items-center focus:outline-none hover:bg-slate-800/50 transition" onclick="toggleFaq(this)">
+                        <span>What makes MediSphere unique?</span>
+                        <i class="fa-solid fa-chevron-down text-brand transition-transform duration-300"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-slate-900/40">
+                        <p class="p-6 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                            MediSphere bridges the gap between blockchain technology and real-world healthcare needs. Unlike traditional crypto projects, we provide tangible utility through telemedicine, digital health records, AI health assistance, and a global network of healthcare professionals.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reveal border border-slate-800 bg-card rounded-xl overflow-hidden">
+                    <button class="w-full p-6 text-left text-white font-semibold flex justify-between items-center focus:outline-none hover:bg-slate-800/50 transition" onclick="toggleFaq(this)">
+                        <span>What is the utility of the $MEDISPHERE token?</span>
+                        <i class="fa-solid fa-chevron-down text-brand transition-transform duration-300"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-slate-900/40">
+                        <p class="p-6 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                            The $MEDISPHERE token powers the entire ecosystem — enabling access to healthcare services, governance voting, community rewards, and future premium features. It's the native currency for all transactions within the MediSphere platform.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="reveal border border-slate-800 bg-card rounded-xl overflow-hidden">
+                    <button class="w-full p-6 text-left text-white font-semibold flex justify-between items-center focus:outline-none hover:bg-slate-800/50 transition" onclick="toggleFaq(this)">
+                        <span>What are the future plans?</span>
+                        <i class="fa-solid fa-chevron-down text-brand transition-transform duration-300"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-slate-900/40">
+                        <p class="p-6 text-slate-400 text-sm leading-relaxed border-t border-slate-800">
+                            Our roadmap includes AI healthcare integration, a dedicated mobile app, global expansion, strategic partnerships, and the development of a complete worldwide healthcare ecosystem that transforms how patients and providers interact.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FOOTER -->
+    <footer class="bg-dark pt-16 pb-8 px-4 border-t border-slate-900 text-sm text-slate-500">
+        <div class="max-w-6xl mx-auto grid gap-10 md:grid-cols-4 mb-12">
+            
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="MediSphere-Logo.png" alt="MediSphere Logo" class="w-8 h-8 rounded-full border border-brand/50 object-cover">
+                    <span class="text-white font-extrabold tracking-wider text-lg">MEDISPHERE</span>
+                </div>
+                <p class="max-w-sm text-xs leading-relaxed text-slate-400 mb-6">
+                    Healthcare Without Borders. A blockchain-powered ecosystem making healthcare accessible, affordable, and connected worldwide.
+                </p>
+                <div class="flex gap-3">
+                    <a href="https://t.me/medispheretoken" target="_blank" class="w-10 h-10 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center text-brand hover:bg-brand hover:text-black transition">
+                        <i class="fa-brands fa-telegram text-lg"></i>
+                    </a>
+                    <a href="https://x.com/MediSpheretoken" target="_blank" class="w-10 h-10 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center text-brand hover:bg-brand hover:text-black transition">
+                        <i class="fa-brands fa-x-twitter text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h5 class="text-white font-bold text-xs uppercase tracking-wider mb-5">Quick Links</h5>
+                <ul class="space-y-3 text-sm text-slate-400">
+                    <li><a href="#about" class="hover:text-brand transition">About</a></li>
+                    <li><a href="#solution" class="hover:text-brand transition">Solution</a></li>
+                    <li><a href="#roadmap" class="hover:text-brand transition">Roadmap</a></li>
+                    <li><a href="#token" class="hover:text-brand transition">Tokenomics</a></li>
+                    <li><a href="#faq" class="hover:text-brand transition">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-white font-bold text-xs uppercase tracking-wider mb-5">Pages</h5>
+                <ul class="space-y-3 text-sm text-slate-400 mb-8">
+                    <li><a href="#token" class="hover:text-brand transition">Token</a></li>
+                    <li><a href="#" class="hover:text-brand transition">Whitepaper</a></li>
+                    <li><a href="#" class="hover:text-brand transition">Launch</a></li>
+                    <li><a href="#community" class="hover:text-brand transition">Community</a></li>
+                </ul>
+                <h5 class="text-white font-bold text-xs uppercase tracking-wider mb-5">Legal</h5>
+                <ul class="space-y-3 text-sm text-slate-400">
+                    <li><a href="#" class="hover:text-brand transition">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-brand transition">Terms of Service</a></li>
+                    <li><a href="#" class="hover:text-brand transition">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs gap-4">
+            <p>&copy; 2026 MediSphere. All rights reserved.</p>
+            <p class="text-slate-500 font-medium">$MEDISPHERE · Launching Soon · Healthcare Without Borders</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTION LOGIC (ANIMATION & TOGGLES) -->
+    <script>
+        // Scroll Reveal Animation Script
+        function revealOnScroll() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 50; // Trigger when element is 50px into view
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", revealOnScroll);
+        revealOnScroll(); // Trigger immediately on load
+
+        // FAQ Accordion Toggle
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            }
+        }
+
+        // Mobile Menu Toggle Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = menuBtn.querySelector('i');
+        const mobileLinks = mobileMenu.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            
+            // Toggle body scrolling
+            document.body.classList.toggle('overflow-hidden');
+            
+            // Switch Icon
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.replace('fa-xmark', 'fa-bars');
+            } else {
+                menuIcon.classList.replace('fa-bars', 'fa-xmark');
+            }
+        }
+
+        // Open/Close on hamburger click
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // Auto-close menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    toggleMenu();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
