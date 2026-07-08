@@ -7,15 +7,15 @@
     <meta name="description" content="MediSphere is a blockchain-powered ecosystem making healthcare accessible, affordable, and connected worldwide. Powered by the $MEDISPHERE token.">
     <meta name="keywords" content="MediSphere, $MEDISPHERE, Healthcare, Blockchain, Telemedicine, Crypto, Web3">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://medispheretoken.vercel.app/"> <
+    <meta property="og:url" content="https://medisphere.vercel.app/">
     <meta property="og:title" content="MediSphere | Healthcare Without Borders | $MEDISPHERE">
     <meta property="og:description" content="Connect with trusted healthcare professionals globally through blockchain technology. Join the $MEDISPHERE ecosystem today.">
-    <meta property="og:image" content="https://medispheretoken.vercel.app/MediSphere-Logo.jpg">
+    <meta property="og:image" content="https://medisphere.vercel.app/MediSphere-Logo.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://medispheretoken.vercel.app/">
+    <meta name="twitter:url" content="https://medisphere.vercel.app/">
     <meta name="twitter:title" content="MediSphere | Healthcare Without Borders | $MEDISPHERE">
     <meta name="twitter:description" content="Connect with trusted healthcare professionals globally through blockchain technology. Join the $MEDISPHERE ecosystem today.">
-    <meta name="twitter:image" content="https://medispheretoken.vercel.app/MediSphere-Logo.jpg"> 
+    <meta name="twitter:image" content="https://medisphere.vercel.app/MediSphere-Logo.jpg"> 
     <link rel="icon" type="image/jpeg" href="MediSphere-Logo.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -50,7 +50,6 @@
             background-size: cover;
         }
         .about-bg {
-            /* Positioned center 20% to keep surgeons' faces visible */
             background: linear-gradient(rgba(3, 7, 18, 0.85), rgba(3, 7, 18, 0.98)), url('MediSphere-Background-Image2.png') no-repeat center 20%;
             background-size: cover;
         }
@@ -92,22 +91,21 @@
 </head>
 <body class="text-slate-300 antialiased overflow-x-hidden">
 
-    <!-- HEADER / NAVIGATION (Made more transparent: bg-[#030712]/40) -->
+    <!-- HEADER / NAVIGATION -->
     <header class="fixed top-0 left-0 w-full bg-[#030712]/40 backdrop-blur-md z-50 border-b border-slate-800 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-            <a href="#home" class="flex items-center gap-3">
+            <a href="index.html" class="flex items-center gap-3">
                 <img src="MediSphere-Logo.jpg" alt="MediSphere Logo" class="w-8 h-8 rounded-full border border-brand/50 object-cover">
                 <span class="text-white font-extrabold tracking-wider text-lg">MEDISPHERE</span>
             </a>
             
-            <!-- Desktop Nav -->
+            <!-- Desktop Nav (Updated to Page Links) -->
             <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-400">
-                <a href="#about" class="hover:text-brand transition">About</a>
-                <a href="#solution" class="hover:text-brand transition">Solution</a>
-                <a href="#token" class="hover:text-brand transition">Tokenomics</a>
-                <a href="#roadmap" class="hover:text-brand transition">Roadmap</a>
-                <a href="#community" class="hover:text-brand transition">Community</a>
-                <a href="#faq" class="hover:text-brand transition">FAQ</a>
+                <a href="index.html" class="text-brand transition">Home</a>
+                <a href="token.html" class="hover:text-brand transition">Token</a>
+                <a href="whitepaper.html" class="hover:text-brand transition">Whitepaper</a>
+                <a href="launch.html" class="hover:text-brand transition">Launch</a>
+                <a href="community.html" class="hover:text-brand transition">Community</a>
             </nav>
 
             <!-- Mobile Menu Button -->
@@ -117,33 +115,27 @@
         </div>
     </header>
 
-    <!-- MOBILE SIDEBAR MENU -->
+    <!-- MOBILE SIDEBAR MENU (Updated to Page Links) -->
     <div id="mobile-menu" class="fixed inset-0 bg-[#030712]/98 backdrop-blur-lg z-40 hidden flex-col pt-24 px-6 pb-6 overflow-y-auto border-t border-slate-800">
         <nav class="flex flex-col gap-6 text-lg font-medium text-slate-300">
-            <a href="#home" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
+            <a href="index.html" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 text-brand">
                 Home <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
             </a>
-            <a href="#about" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
-                About <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
+            <a href="token.html" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
+                Token <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
             </a>
-            <a href="#solution" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
-                Solution <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
+            <a href="whitepaper.html" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
+                Whitepaper <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
             </a>
-            <a href="#token" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
-                Tokenomics <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
+            <a href="launch.html" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
+                Launch <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
             </a>
-            <a href="#roadmap" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
-                Roadmap <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
-            </a>
-            <a href="#community" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
+            <a href="community.html" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
                 Community <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
-            </a>
-            <a href="#faq" class="mobile-link flex items-center justify-between border-b border-slate-800 pb-4 hover:text-brand">
-                FAQ <i class="fa-solid fa-chevron-right text-sm text-slate-600"></i>
             </a>
         </nav>
         <div class="mt-auto pt-8">
-            <a href="#community" class="mobile-link w-full inline-flex items-center justify-center gap-2 bg-brand text-black px-6 py-3.5 rounded-xl font-bold">
+            <a href="https://t.me/medispheretoken" target="_blank" rel="noopener noreferrer" class="mobile-link w-full inline-flex items-center justify-center gap-2 bg-brand text-black px-6 py-3.5 rounded-xl font-bold">
                 Join Community
             </a>
         </div>
@@ -163,10 +155,8 @@
         <div class="particle w-1.5 h-1.5 bottom-[15%] left-[45%]" style="animation-duration: 5s; animation-delay: 3s;"></div>
 
         <div class="max-w-3xl mx-auto relative z-10">
-            <!-- Central Hero Logo -->
             <img src="MediSphere-Logo.jpg" alt="MediSphere Logo Large" class="reveal w-24 h-24 md:w-32 md:h-32 rounded-full object-cover shadow-[0_0_40px_rgba(0,210,106,0.2)] mx-auto mb-8 border border-brand/30">
 
-            <!-- Badge -->
             <div class="reveal delay-100 inline-flex items-center gap-2 border border-brand/30 bg-brand/10 px-4 py-1.5 rounded-full text-xs text-brand font-bold uppercase tracking-widest mb-6">
                 <i class="fa-solid fa-rocket animate-pulse"></i> Launching Soon · $MEDISPHERE
             </div>
@@ -180,16 +170,16 @@
             </p>
             
             <div class="reveal delay-400 flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                <a href="#community" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand hover:bg-[#00b55b] text-black px-8 py-3.5 rounded-xl font-bold transition duration-300">
+                <a href="https://t.me/medispheretoken" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand hover:bg-[#00b55b] text-black px-8 py-3.5 rounded-xl font-bold transition duration-300">
                     <i class="fa-solid fa-users"></i> Join Community <i class="fa-solid fa-arrow-right text-sm"></i>
                 </a>
-                <a href="#" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-transparent border-2 border-slate-700 hover:border-slate-500 hover:bg-slate-800/50 text-white px-8 py-3.5 rounded-xl font-semibold transition duration-300">
+                <a href="whitepaper.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-transparent border-2 border-slate-700 hover:border-slate-500 hover:bg-slate-800/50 text-white px-8 py-3.5 rounded-xl font-semibold transition duration-300">
                     <i class="fa-regular fa-file-lines"></i> View Whitepaper
                 </a>
             </div>
             
             <div class="reveal delay-400 flex justify-center">
-                <a href="#token" class="inline-flex items-center gap-2 bg-card/60 border border-slate-800 text-slate-300 px-6 py-2.5 rounded-full text-sm font-semibold hover:border-slate-600 transition">
+                <a href="launch.html" class="inline-flex items-center gap-2 bg-card/60 border border-slate-800 text-slate-300 px-6 py-2.5 rounded-full text-sm font-semibold hover:border-slate-600 transition">
                     <i class="fa-solid fa-bolt text-brand"></i> Launch Updates
                 </a>
             </div>
@@ -255,7 +245,6 @@
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto text-left">
-                <!-- FIX: Changed from fa-user-doctor-slash to fa-user-xmark -->
                 <div class="reveal bg-card p-6 rounded-2xl border border-slate-800">
                     <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4">
                         <i class="fa-solid fa-user-xmark"></i>
@@ -360,7 +349,6 @@
                     </div>
                     <h4 class="text-white font-bold text-sm leading-snug">Electronic<br>Prescriptions</h4>
                 </div>
-                <!-- FIX: Changed from fa-folder-medical to fa-file-medical -->
                 <div class="reveal delay-100 bg-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-center hover:border-brand/30 transition">
                     <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4">
                         <i class="fa-solid fa-file-medical"></i>
@@ -705,7 +693,69 @@
         </div>
     </section>
 
-    <!-- 9. FOOTER -->
+    <!-- 9. EXPLORE MORE SECTION (NEW) -->
+    <section class="py-24 px-4 bg-[#050810] border-t border-slate-900">
+        <div class="max-w-6xl mx-auto text-center">
+            <span class="reveal border border-brand/20 bg-brand/10 px-4 py-1 rounded-full text-xs font-bold text-brand tracking-wider uppercase">
+                EXPLORE MEDISPHERE
+            </span>
+            <h2 class="reveal delay-100 text-3xl md:text-5xl font-extrabold text-white mt-6 mb-16">
+                Dive deeper into the ecosystem
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-left">
+                <!-- View Token -->
+                <a href="token.html" class="reveal bg-card p-6 rounded-2xl border border-slate-800 hover:border-brand/50 hover:bg-slate-900/50 transition duration-300 group">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-coins text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-brand transition-colors">View Token Information</h3>
+                    <p class="text-slate-400 text-sm mb-4">Discover the utility, ecosystem rewards, and governance powered by $MEDISPHERE.</p>
+                    <div class="text-brand text-sm font-semibold flex items-center gap-2">
+                        Learn More <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </div>
+                </a>
+
+                <!-- View Launch -->
+                <a href="launch.html" class="reveal delay-100 bg-card p-6 rounded-2xl border border-slate-800 hover:border-brand/50 hover:bg-slate-900/50 transition duration-300 group">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-rocket text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-brand transition-colors">View Launch Information</h3>
+                    <p class="text-slate-400 text-sm mb-4">Track the countdown, exchange listings, and get the official buying guide.</p>
+                    <div class="text-brand text-sm font-semibold flex items-center gap-2">
+                        Learn More <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </div>
+                </a>
+
+                <!-- View Whitepaper -->
+                <a href="whitepaper.html" class="reveal delay-200 bg-card p-6 rounded-2xl border border-slate-800 hover:border-brand/50 hover:bg-slate-900/50 transition duration-300 group">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-regular fa-file-lines text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-brand transition-colors">View Whitepaper Information</h3>
+                    <p class="text-slate-400 text-sm mb-4">Read the comprehensive guide to our technology, security, and global vision.</p>
+                    <div class="text-brand text-sm font-semibold flex items-center gap-2">
+                        Learn More <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </div>
+                </a>
+
+                <!-- View Communities -->
+                <a href="community.html" class="reveal delay-300 bg-card p-6 rounded-2xl border border-slate-800 hover:border-brand/50 hover:bg-slate-900/50 transition duration-300 group">
+                    <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-users text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-brand transition-colors">View Communities</h3>
+                    <p class="text-slate-400 text-sm mb-4">Connect with our team and the worldwide network of patients and innovators.</p>
+                    <div class="text-brand text-sm font-semibold flex items-center gap-2">
+                        Learn More <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FOOTER -->
     <footer class="bg-dark pt-16 pb-8 px-4 border-t border-slate-900 text-sm text-slate-500">
         <div class="max-w-6xl mx-auto grid gap-10 md:grid-cols-4 mb-12">
             
@@ -728,24 +778,17 @@
             </div>
 
             <div>
-                <h5 class="text-white font-bold text-xs uppercase tracking-wider mb-5">Quick Links</h5>
+                <h5 class="text-white font-bold text-xs uppercase tracking-wider mb-5">Pages</h5>
                 <ul class="space-y-3 text-sm text-slate-400">
-                    <li><a href="#about" class="hover:text-brand transition">About</a></li>
-                    <li><a href="#solution" class="hover:text-brand transition">Solution</a></li>
-                    <li><a href="#roadmap" class="hover:text-brand transition">Roadmap</a></li>
-                    <li><a href="#token" class="hover:text-brand transition">Tokenomics</a></li>
-                    <li><a href="#faq" class="hover:text-brand transition">FAQ</a></li>
+                    <li><a href="index.html" class="text-brand transition">Home</a></li>
+                    <li><a href="token.html" class="hover:text-brand transition">Token</a></li>
+                    <li><a href="whitepaper.html" class="hover:text-brand transition">Whitepaper</a></li>
+                    <li><a href="launch.html" class="hover:text-brand transition">Launch</a></li>
+                    <li><a href="community.html" class="hover:text-brand transition">Community</a></li>
                 </ul>
             </div>
 
             <div>
-                <h5 class="text-white font-bold text-xs uppercase tracking-wider mb-5">Pages</h5>
-                <ul class="space-y-3 text-sm text-slate-400 mb-8">
-                    <li><a href="#token" class="hover:text-brand transition">Token</a></li>
-                    <li><a href="#" class="hover:text-brand transition">Whitepaper</a></li>
-                    <li><a href="#" class="hover:text-brand transition">Launch</a></li>
-                    <li><a href="#community" class="hover:text-brand transition">Community</a></li>
-                </ul>
                 <h5 class="text-white font-bold text-xs uppercase tracking-wider mb-5">Legal</h5>
                 <ul class="space-y-3 text-sm text-slate-400">
                     <li><a href="#" class="hover:text-brand transition">Privacy Policy</a></li>
