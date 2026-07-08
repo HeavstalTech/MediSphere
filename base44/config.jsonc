@@ -1,9 +1,0 @@
-{
-  "name": "MediSphere",
-  "site": {
-    "installCommand": "npm ci",
-    "buildCommand": "npm run build",
-    "serveCommand": "npm run dev",
-    "outputDirectory": "./dist"
-  }
-}
