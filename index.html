@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MediSphere | Healthcare Without Borders</title>
-    <!-- Tailwind CSS CDN -->
+    <meta name="description" content="MediSphere is a blockchain-powered ecosystem making healthcare accessible, affordable, and connected worldwide. Powered by the $MEDISPHERE token.">
+    <meta name="keywords" content="MediSphere, $MEDISPHERE, Healthcare, Blockchain, Telemedicine, Crypto, Web3">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://medispheretoken.vercel.app/"> <
+    <meta property="og:title" content="MediSphere | Healthcare Without Borders | $MEDISPHERE">
+    <meta property="og:description" content="Connect with trusted healthcare professionals globally through blockchain technology. Join the $MEDISPHERE ecosystem today.">
+    <meta property="og:image" content="https://medispheretoken.vercel.app/MediSphere-Logo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://medispheretoken.vercel.app/">
+    <meta name="twitter:title" content="MediSphere | Healthcare Without Borders | $MEDISPHERE">
+    <meta name="twitter:description" content="Connect with trusted healthcare professionals globally through blockchain technology. Join the $MEDISPHERE ecosystem today.">
+    <meta name="twitter:image" content="https://medispheretoken.vercel.app/MediSphere-Logo.jpg"> 
+    <link rel="icon" type="image/jpeg" href="MediSphere-Logo.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -63,12 +73,27 @@
         .delay-200 { transition-delay: 200ms; }
         .delay-300 { transition-delay: 300ms; }
         .delay-400 { transition-delay: 400ms; }
+
+        /* Floating Particles Animation for Hero Section */
+        @keyframes float-particle {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.5; }
+            50% { transform: translateY(-20px) translateX(10px); opacity: 0.9; }
+        }
+        .particle {
+            position: absolute;
+            background-color: #00D26A;
+            border-radius: 50%;
+            box-shadow: 0 0 12px 2px rgba(0, 210, 106, 0.7);
+            animation: float-particle infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
     </style>
 </head>
 <body class="text-slate-300 antialiased overflow-x-hidden">
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="fixed top-0 left-0 w-full bg-[#030712]/90 backdrop-blur-md z-50 border-b border-slate-800 transition-all duration-300" id="navbar">
+    <!-- HEADER / NAVIGATION (Made more transparent: bg-[#030712]/40) -->
+    <header class="fixed top-0 left-0 w-full bg-[#030712]/40 backdrop-blur-md z-50 border-b border-slate-800 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
             <a href="#home" class="flex items-center gap-3">
                 <img src="MediSphere-Logo.jpg" alt="MediSphere Logo" class="w-8 h-8 rounded-full border border-brand/50 object-cover">
@@ -125,7 +150,18 @@
     </div>
 
     <!-- 1. HERO SECTION -->
-    <section id="home" class="hero-bg pt-32 pb-20 px-4 min-h-screen flex flex-col items-center justify-center text-center relative">
+    <section id="home" class="hero-bg pt-32 pb-20 px-4 min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden">
+        
+        <!-- Floating Green Particles -->
+        <div class="particle w-2 h-2 top-[15%] left-[20%]" style="animation-duration: 5s; animation-delay: 0s;"></div>
+        <div class="particle w-2.5 h-2.5 top-[25%] right-[15%]" style="animation-duration: 7s; animation-delay: 1s;"></div>
+        <div class="particle w-1.5 h-1.5 bottom-[30%] left-[10%]" style="animation-duration: 6s; animation-delay: 2s;"></div>
+        <div class="particle w-2 h-2 bottom-[20%] right-[25%]" style="animation-duration: 5.5s; animation-delay: 0.5s;"></div>
+        <div class="particle w-1.5 h-1.5 top-[45%] left-[5%]" style="animation-duration: 6.5s; animation-delay: 1.5s;"></div>
+        <div class="particle w-1 h-1 top-[55%] right-[8%]" style="animation-duration: 4.5s; animation-delay: 2.5s;"></div>
+        <div class="particle w-2.5 h-2.5 top-[10%] left-[50%]" style="animation-duration: 8s; animation-delay: 0s;"></div>
+        <div class="particle w-1.5 h-1.5 bottom-[15%] left-[45%]" style="animation-duration: 5s; animation-delay: 3s;"></div>
+
         <div class="max-w-3xl mx-auto relative z-10">
             <!-- Central Hero Logo -->
             <img src="MediSphere-Logo.jpg" alt="MediSphere Logo Large" class="reveal w-24 h-24 md:w-32 md:h-32 rounded-full object-cover shadow-[0_0_40px_rgba(0,210,106,0.2)] mx-auto mb-8 border border-brand/30">
@@ -219,9 +255,10 @@
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto text-left">
+                <!-- FIX: Changed from fa-user-doctor-slash to fa-user-xmark -->
                 <div class="reveal bg-card p-6 rounded-2xl border border-slate-800">
                     <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4">
-                        <i class="fa-solid fa-user-doctor-slash"></i>
+                        <i class="fa-solid fa-user-xmark"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-2">Doctor Shortages</h3>
                     <p class="text-slate-400 text-sm">Millions lack access to a qualified physician in their region.</p>
@@ -323,9 +360,10 @@
                     </div>
                     <h4 class="text-white font-bold text-sm leading-snug">Electronic<br>Prescriptions</h4>
                 </div>
+                <!-- FIX: Changed from fa-folder-medical to fa-file-medical -->
                 <div class="reveal delay-100 bg-card p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-center hover:border-brand/30 transition">
                     <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand mb-4">
-                        <i class="fa-solid fa-folder-medical"></i>
+                        <i class="fa-solid fa-file-medical"></i>
                     </div>
                     <h4 class="text-white font-bold text-sm leading-snug">Digital Medical<br>Records</h4>
                 </div>
@@ -548,7 +586,6 @@
 
     <!-- 7. COMMUNITY SECTION -->
     <section id="community" class="relative py-24 px-4 overflow-hidden border-t border-slate-900">
-        <!-- Kept inline background here assuming no local background requested for community, but you can change the URL to a local file if needed -->
         <div class="absolute inset-0 z-0 opacity-30">
             <img src="https://i.ibb.co/DHRkDJyj/e7e2138ca192.jpg" alt="Community Background" class="w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#030712]/70 to-[#030712]"></div>
@@ -589,7 +626,7 @@
         </div>
     </section>
 
-    <!-- 8. FAQ SECTION (WITH EXACT VIDEO COPY) -->
+    <!-- 8. FAQ SECTION -->
     <section id="faq" class="py-24 px-4 bg-dark border-t border-slate-900">
         <div class="max-w-3xl mx-auto">
             <div class="text-center mb-16">
@@ -732,7 +769,7 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 50; // Trigger when element is 50px into view
+                var elementVisible = 50; 
                 
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
